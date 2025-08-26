@@ -28,5 +28,50 @@ Follow these steps to get the server running locally.
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/your-username/cardgame_backend.git
-cd cardgame_backend
+git clone https://github.com/your-username/card_game_backend.git
+cd card_game_backend
+```
+
+**2. Install dependencies**
+```bash
+npm install
+```
+
+**3. Set up Environment Variables**
+Create a file named `.env` in the root of the project and add your MongoDB connection string.
+
+_.env.example_
+```# The port the server will run on
+PORT=5001
+
+# Your connection string from MongoDB Atlas
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/yourDatabase?retryWrites=true&w=majority
+```
+
+**4. Run the server**
+```bash
+npm start
+```
+The API will be available at `http://localhost:5001`.
+
+---
+
+## ☁️ Deployment
+
+This project is configured for easy deployment on [Render](https://render.com/).
+
+1.  Push the code to a GitHub repository.
+2.  Create a new "Web Service" on Render and connect it to your repository.
+3.  Set the **Start Command** to `npm start`.
+4.  Add an **Environment Variable** with the `Key` of `MONGO_URI` and your connection string as the `Value`.
+5.  Deploy!
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint               | Description                               |
+| :----- | :--------------------- | :---------------------------------------- |
+| `GET`  | `/leaderboard`         | Fetches all players sorted by losses.     |
+| `POST` | `/leaderboard/loss`    | Records a loss. Requires `{"name": "player_name"}` in the body. |
+| `DELETE`| `/leaderboard`        | Deletes all records from the leaderboard. |
